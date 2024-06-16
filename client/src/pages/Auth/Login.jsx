@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useAuth } from "../../context/auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
+  //form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -18,7 +22,13 @@ const Login = () => {
       });
       if (res && res.data.success) {
         toast.success(res.data.message);
-        navigate("/");
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        navigate(location.state || "/");
       } else {
         toast.error(res.data.message);
       }
@@ -30,14 +40,12 @@ const Login = () => {
 
   return (
     <Layout>
-      <div className="w-25 loginpage">
+      <div className="w-25 mt-5 loginpage">
         <h1 className="fw-300 text-center">Login</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">
-              Email address
-            </label>
             <input
+              placeholder=" Enter  Email address"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -46,15 +54,10 @@ const Login = () => {
               aria-describedby="emailHelp"
               required
             />
-            <div id="emailHelp" className="form-text">
-              We'll never share your email with anyone else.
-            </div>
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">
-              Password
-            </label>
             <input
+              placeholder="  Password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -63,9 +66,17 @@ const Login = () => {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
+
+          <button type="submit" className="btn btn-primary w-100">
+            Login
           </button>
+          <a
+            href="#!"
+            onClick={() => navigate("/forgot-password")}
+            className="text-primary text-start w-100 mb-1   "
+          >
+            Forgot Password
+          </a>
         </form>
       </div>
     </Layout>

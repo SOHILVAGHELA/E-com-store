@@ -2,28 +2,33 @@ import React, { useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
+  const [answer, setAnswer] = useState("");
   const [phone, setPhone] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:4000/api/v1/auth/register", {
-        name,
-        address,
-        phone,
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "http://localhost:4000/api/v1/auth/register",
+        {
+          name,
+          address,
+          phone,
+          email,
+          password,
+          answer,
+        }
+      );
       if (res && res.data.success) {
         toast.success(res.data.message);
-        navigate("/login");
+        navigate("/");
       } else {
         toast.error(res.data.message);
       }
@@ -88,8 +93,19 @@ const Register = () => {
               className="form-control  input"
             />
           </div>
+          <div className="mb-3">
+            <input
+              type="tel"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              placeholder="Enter your favorite sports"
+              required
+              className="form-control  input"
+            />
+          </div>
+
           <button type="submit" className="btn btn-primary  input">
-            Submit
+            register
           </button>
         </form>
       </div>

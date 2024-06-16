@@ -8,7 +8,7 @@
 }
 
 .nav-link {
-    font-weight: 100;
+    font-weight: normal;
 }
 
 .active {
@@ -55,6 +55,6 @@
 
 /* ///// login page */
 .loginpage{
-    margin-left: auto;
+    margin: auto;
     margin-right: auto;
 }
