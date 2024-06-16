@@ -33,52 +33,56 @@ const Login = () => {
         toast.error(res.data.message);
       }
     } catch (error) {
-      toast.error("An error occurred. Please try again.");
+      toast.error("Please valid email and password.");
       console.log(error);
     }
   };
 
   return (
     <Layout>
-      <div className="w-25 mt-5 loginpage">
-        <h1 className="fw-300 text-center">Login</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <input
-              placeholder=" Enter  Email address"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              placeholder="  Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="form-control"
-              id="exampleInputPassword1"
-              required
-            />
-          </div>
+      <section className="py-5">
+        <div className="container">
+          <div className="login-box mx-auto">
+            <h1 className="fw-300 text-center mb-4">Login</h1>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <input
+                  placeholder=" Enter  Email address"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <input
+                  placeholder="  Password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="form-control"
+                  id="exampleInputPassword1"
+                  required
+                />
+              </div>
 
-          <button type="submit" className="btn btn-primary w-100">
-            Login
-          </button>
-          <a
-            href="#!"
-            onClick={() => navigate("/forgot-password")}
-            className="text-primary text-start w-100 mb-1   "
-          >
-            Forgot Password
-          </a>
-        </form>
-      </div>
+              <button type="submit" className="btn btn-primary w-100">
+                Login
+              </button>
+              <a
+                href="#!"
+                onClick={() => navigate("/forgot-password")}
+                className="text-primary text-start w-100 mb-1   "
+              >
+                Forgot Password
+              </a>
+            </form>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };

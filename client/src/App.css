@@ -54,7 +54,6 @@
 }
 
 /* ///// login page */
-.loginpage{
-    margin: auto;
-    margin-right: auto;
+.login-box{
+    max-width: 350px;
 }

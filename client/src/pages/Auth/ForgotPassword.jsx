@@ -18,7 +18,7 @@ const ForgotPassword = () => {
         "http://localhost:4000/api/v1/auth/forget-password",
         {
           email,
-          newpassword,
+          newPassword,
           answer,
         }
       );
@@ -37,49 +37,53 @@ const ForgotPassword = () => {
   return (
     <>
       <Layout>
-        <div className="w-25 mt-5 loginpage">
-          <h1 className="fw-300 text-center">Forgot Password</h1>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <input
-                placeholder="Enter Email address"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="form-control"
-                id="emailInput"
-                aria-describedby="emailHelp"
-                required
-              />
-            </div>
+        <div>
+          <div className="container">
+            <div className="login-box mx-auto">
+              <h1 className="fw-300 text-center mb-4">Forgot Password</h1>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-3">
+                  <input
+                    placeholder="Enter Email address"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="form-control"
+                    id="emailInput"
+                    aria-describedby="emailHelp"
+                    required
+                  />
+                </div>
 
-            <div className="mb-3">
-              <input
-                placeholder="Enter Your Favorite Sport"
-                type="text"
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-                className="form-control"
-                id="answerInput"
-                required
-              />
-            </div>
-            <div className="mb-3">
-              <input
-                placeholder="New Password"
-                type="password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                className="form-control"
-                id="passwordInput"
-                required
-              />
-            </div>
+                <div className="mb-3">
+                  <input
+                    placeholder="Enter Your Favorite Sport"
+                    type="text"
+                    value={answer}
+                    onChange={(e) => setAnswer(e.target.value)}
+                    className="form-control"
+                    id="answerInput"
+                    required
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    placeholder="New Password"
+                    type="password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    className="form-control"
+                    id="passwordInput"
+                    required
+                  />
+                </div>
 
-            <button type="submit" className="btn btn-primary w-100">
-              Reset
-            </button>
-          </form>
+                <button type="submit" className="btn btn-primary w-100">
+                  Reset
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </Layout>
     </>

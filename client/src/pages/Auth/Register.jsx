@@ -40,75 +40,77 @@ const Register = () => {
 
   return (
     <Layout>
-      <h1 className="text-center">Register Page</h1>
-      <div className="registerpage">
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3 ">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your Name"
-              required
-              className="form-control "
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your Email"
-              required
-              className="form-control  input"
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your Password"
-              required
-              className="form-control  input"
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              placeholder="Enter your Address"
-              required
-              className="form-control  input"
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="Enter your Phone Number"
-              required
-              className="form-control  input"
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="tel"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              placeholder="Enter your favorite sports"
-              required
-              className="form-control  input"
-            />
-          </div>
+      <section className="py-5">
+        <h1 className="text-center">Register Page</h1>
+        <div className="registerpage">
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3 ">
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your Name"
+                required
+                className="form-control "
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your Email"
+                required
+                className="form-control  input"
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your Password"
+                required
+                className="form-control  input"
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                placeholder="Enter your Address"
+                required
+                className="form-control  input"
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Enter your Phone Number"
+                required
+                className="form-control  input"
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="tel"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                placeholder="Enter your favorite sports"
+                required
+                className="form-control  input"
+              />
+            </div>
 
-          <button type="submit" className="btn btn-primary  input">
-            register
-          </button>
-        </form>
-      </div>
+            <button type="submit" className="btn btn-primary  input">
+              register
+            </button>
+          </form>
+        </div>
+      </section>
     </Layout>
   );
 };
