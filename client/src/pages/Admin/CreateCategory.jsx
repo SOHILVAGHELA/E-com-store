@@ -1,7 +1,15 @@
+import { useState, useEffect } from "react";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import Layout from "../../components/Layout/Layout";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const CreateCategory = () => {
+  // const [catergories, setCategories] = useState([]);
+  // // get all category
+  // const getAllCategory=async()=>{
+
+  // }
   return (
     <>
       <Layout>
