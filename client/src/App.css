@@ -57,3 +57,9 @@
 .login-box{
     max-width: 350px;
 }
+/* product 
+ */
+ .product-link{
+    text-decoration: none !important;
+    color: black !important;
+ }
