@@ -3,6 +3,7 @@ import Layout from "../components/Layout/Layout";
 import axios from "axios";
 import { Prices } from "../components/Prices";
 import { Checkbox, Radio } from "antd";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const HomePage = () => {
@@ -11,6 +12,7 @@ const HomePage = () => {
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const [total, setTotal] = useState(0);
+  const navigate = useNavigate();
 
   // Get all products
   const getAllProducts = async () => {
@@ -54,18 +56,6 @@ const HomePage = () => {
     setChecked(all);
   };
 
-  // Get total count
-  const getTotal = async () => {
-    try {
-      const { data } = await axios.get(
-        `http://localhost:4000/api/v1/product/product-count`
-      );
-      setTotal(data?.total);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   // Get filtered products
   const filterProduct = async () => {
     try {
@@ -82,7 +72,6 @@ const HomePage = () => {
 
   useEffect(() => {
     getAllCategories();
-    getTotal();
   }, []);
 
   useEffect(() => {
@@ -155,7 +144,12 @@ const HomePage = () => {
                       {p.description.substring(0, 30)}...
                     </p>
                     <p className="card-text">${p.price}</p>
-                    <button className="btn btn-primary">See more</button>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => navigate(`/product/${p.slug}`)}
+                    >
+                      See more
+                    </button>
                     <button className="btn btn-secondary ms-2">
                       ADD TO CART
                     </button>
