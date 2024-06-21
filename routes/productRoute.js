@@ -5,6 +5,7 @@ import {
   deleteProductController,
   getProductController,
   getSingleProductController,
+  productCategoryController,
   productFilterController,
   productPhotoCnntroller,
   searchProductController,
@@ -42,4 +43,6 @@ router.put(
 router.post("/product-filters", productFilterController);
 // serach product
 router.get("/search/:keyword", searchProductController);
+// category wise product
+router.get("/product-category/:slug", productCategoryController);
 export default router;

@@ -1,4 +1,5 @@
 import productModel from "../models/productModel.js";
+import categoryModel from "../models/categoryModel.js";
 import slugify from "slugify";
 import fs from "fs";
 import { log } from "console";
@@ -258,6 +259,35 @@ export const searchProductController = async (req, res) => {
       success: false,
       message: "error while searching product",
       error,
+    });
+  }
+};
+export const productCategoryController = async (req, res) => {
+  try {
+    const category = await categoryModel.findOne({ slug: req.params.slug });
+
+    if (!category) {
+      return res.status(404).send({
+        success: false,
+        message: "Category not found",
+      });
+    }
+
+    const products = await productModel
+      .find({ category: category._id })
+      .populate("category");
+
+    res.status(200).send({
+      success: true,
+      category,
+      products,
+    });
+  } catch (error) {
+    console.error("Error fetching products by category:", error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting products",
+      error: error.message,
     });
   }
 };
