@@ -63,3 +63,13 @@
     text-decoration: none !important;
     color: black !important;
  }
+ 
+ /* homepage filter column */
+ .filter-col{
+    max-width: 300px;
+ }
+ .card-img-top{
+    height: 300px;
+    object-fit: cover;
+    object-position: center top;
+ }
