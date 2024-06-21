@@ -1,6 +1,7 @@
 import productModel from "../models/productModel.js";
 import slugify from "slugify";
 import fs from "fs";
+import { log } from "console";
 
 // Controller to Create A Product
 export const createProductController = async (req, res) => {
@@ -189,6 +190,85 @@ export const updateProductController = async (req, res) => {
       success: false,
       error,
       message: "Error occurred while updating product",
+    });
+  }
+};
+//Filter Product controller
+export const productFilterController = async (req, res) => {
+  try {
+    // Step 1: Log incoming request body
+    console.log("Incoming request body:", req.body);
+
+    // Step 2: Destructure checked and radio from req.body
+    const { checked, radio } = req.body;
+
+    // Step 3: Initialize args object
+    let args = {};
+
+    // Step 4: Construct MongoDB query based on checked and radio
+    if (checked && checked.length > 0) {
+      args.category = { $in: checked };
+    }
+
+    if (radio && radio.length === 2) {
+      args.price = { $gte: radio[0], $lte: radio[1] };
+    }
+
+    // Step 5: Log the constructed query arguments
+    console.log("Query args:", args);
+
+    // Step 6: Perform MongoDB query
+    const products = await productModel.find(args);
+
+    // Step 7: Send success response with products
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    // Step 8: Log and handle errors
+    console.log("Error:", error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error while filtering products",
+    });
+  }
+};
+//product count controller
+export const productCountController = async (req, res) => {
+  try {
+    const total = await productModel.estimatedDocumentCount();
+    res.status(200).send({ success: true, total });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .send({ success: false, message: "Error in product count", error });
+  }
+};
+
+//product list controller
+
+export const productListController = async (req, res) => {
+  try {
+    const perPage = 6;
+    const page = req.params.page || 1;
+
+    const products = await productModel
+      .find({})
+      .select("-photo")
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
+
+    res.status(200).send({ success: true, products });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in fetching product list",
+      error,
     });
   }
 };

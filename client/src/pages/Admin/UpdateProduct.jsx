@@ -34,7 +34,7 @@ const UpdateProduct = () => {
       setDescription(data.product.description);
       setPrice(data.product.price);
       setQuantity(data.product.quantity);
-      setCategory(data.product.category._id); // Use _id for the category
+      setCategory(data.product.category._id);
       setShipping(data.product.shipping);
     } catch (error) {
       console.log(error);
@@ -89,6 +89,23 @@ const UpdateProduct = () => {
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong while updating product");
+    }
+  };
+  //handle delete product
+  const handleDelete = async () => {
+    try {
+      let answer = window.prompt(
+        "are you  sure  want to delete this product ?"
+      );
+      if (!answer) return;
+      const { data } = await axios.delete(
+        `http://localhost:4000/api/v1/product/delete-product/${id}`
+      );
+      toast.success("Product Delete Successfully");
+      navigate("dashboard/admin/products");
+    } catch (error) {
+      console.log(error);
+      toast.error("somthing went wrong while deleting product");
     }
   };
 
@@ -203,6 +220,11 @@ const UpdateProduct = () => {
               <div className="mb-3">
                 <button className="btn btn-primary" onClick={handleUpdate}>
                   Update Product
+                </button>
+              </div>
+              <div className="mb-3">
+                <button className="btn btn-danger" onClick={handleDelete}>
+                  Delete Product
                 </button>
               </div>
             </div>

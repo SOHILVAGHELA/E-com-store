@@ -7,7 +7,7 @@ const Layout = (props) => {
     <>
       <div className="d-flex flex-column min-vh-100">
         <Header></Header>
-        <main className="flex-grow-1 d-flex flex-column  justify-content-center">
+        <main className="flex-grow-1 d-flex flex-column justify-content-center">
           <Toaster />
           {props.children}
         </main>
