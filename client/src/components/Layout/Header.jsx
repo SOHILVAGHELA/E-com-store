@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../../context/auth";
+import Searchinput from "../Form/Searchinput";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -32,6 +33,7 @@ const Header = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <Searchinput />
             <li className="nav-item">
               <NavLink to="/" className="nav-link" aria-current="page">
                 Home
