@@ -8,10 +8,10 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [address, setAddress] = useState("");
-  const [answer, setAnswer] = useState("");
   const [phone, setPhone] = useState("");
+  const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
-
+  //form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
