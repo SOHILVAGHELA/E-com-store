@@ -25,17 +25,17 @@ const ProductDatail = () => {
   return (
     <>
       <Layout>
-        <div className="container">
+        <div className="container py-5">
           {product && (
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-md-4">
                 <img
                   src={`http://localhost:4000/api/v1/product/product-photo/${product._id}`}
-                  className="card-img-top"
+                  className="w-100"
                   alt={product.name}
                 />
               </div>
-              <div className="col-md-6">
+              <div className="col-md-8">
                 <h1>Product Detail</h1>
                 <h6>Name: {product.name}</h6>
                 <h6>Description: {product.description}</h6>

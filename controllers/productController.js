@@ -239,29 +239,36 @@ export const productFilterController = async (req, res) => {
 //serach controller
 export const searchProductController = async (req, res) => {
   try {
+    // Extract keyword from request parameters with error handling
     const { keyword } = req.params;
+    if (!keyword) {
+      return res.status(400).send({
+        success: false,
+        message: 'Missing required parameter "keyword"',
+      });
+    }
+
+    // Perform case-insensitive search using regular expression
     const results = await productModel
       .find({
         $or: [
-          {
-            name: { $regex: keyword, $optoions: "i" },
-          },
-          {
-            description: { $regex: keyword, $optoions: "i" },
-          },
+          { name: { $regex: keyword, $options: "i" } },
+          { description: { $regex: keyword, $options: "i" } },
         ],
       })
-      .select("-photo");
+      .select("-photo"); // Exclude photo field
+
     res.json(results);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     res.status(500).send({
       success: false,
-      message: "error while searching product",
-      error,
+      message: "Error while searching product",
+      error: process.env.NODE_ENV === "production" ? undefined : error, // Only include error details in non-production environments
     });
   }
 };
+
 export const productCategoryController = async (req, res) => {
   try {
     const category = await categoryModel.findOne({ slug: req.params.slug });
